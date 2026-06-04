@@ -1,0 +1,326 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Ram Narayan Singh — EEE & AI/ML Developer</title>
+<link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=DM+Mono:wght@400;500&family=Instrument+Sans:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  :root {
+    --bg: #f9f8f5;
+    --surface: #ffffff;
+    --ink: #1a1916;
+    --ink-2: #5a5750;
+    --ink-3: #9a9790;
+    --accent: #1a5c8a;
+    --accent-light: #e4eef6;
+    --border: #e4e2da;
+    --tag-bg: #f0efe9;
+    --nav-h: 64px;
+  }
+  html { scroll-behavior: smooth; }
+  body { font-family: 'Instrument Sans', sans-serif; background: var(--bg); color: var(--ink); line-height: 1.6; font-size: 16px; }
+
+  nav {
+    position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+    height: var(--nav-h);
+    background: rgba(249,248,245,0.92);
+    backdrop-filter: blur(12px);
+    border-bottom: 1px solid var(--border);
+    display: flex; align-items: center; justify-content: space-between;
+    padding: 0 clamp(1.5rem, 5vw, 4rem);
+  }
+  .nav-logo { font-family: 'DM Serif Display', serif; font-size: 1.25rem; color: var(--ink); text-decoration: none; }
+  .nav-links { display: flex; gap: 2rem; list-style: none; }
+  .nav-links a { font-size: 0.875rem; color: var(--ink-2); text-decoration: none; letter-spacing: 0.02em; transition: color 0.2s; }
+  .nav-links a:hover { color: var(--ink); }
+
+  section { padding: 5.5rem clamp(1.5rem, 5vw, 4rem); max-width: 900px; margin: 0 auto; }
+
+  /* HERO */
+  #hero { min-height: 100vh; display: flex; flex-direction: column; justify-content: center; padding-top: calc(var(--nav-h) + 3rem); padding-bottom: 4rem; }
+  .hero-tag { display: inline-flex; align-items: center; gap: 8px; font-family: 'DM Mono', monospace; font-size: 0.78rem; color: var(--accent); background: var(--accent-light); padding: 6px 14px; border-radius: 100px; margin-bottom: 1.75rem; letter-spacing: 0.04em; }
+  .hero-tag span { width: 6px; height: 6px; border-radius: 50%; background: var(--accent); display: block; animation: pulse 2s infinite; }
+  @keyframes pulse { 0%,100%{opacity:1} 50%{opacity:0.4} }
+  h1 { font-family: 'DM Serif Display', serif; font-size: clamp(2.6rem, 7vw, 5rem); line-height: 1.08; letter-spacing: -0.02em; color: var(--ink); margin-bottom: 1.25rem; }
+  h1 em { font-style: italic; color: var(--ink-2); }
+  .hero-sub { font-size: 1.05rem; color: var(--ink-2); max-width: 540px; margin-bottom: 2.5rem; line-height: 1.75; }
+  .hero-actions { display: flex; gap: 1rem; flex-wrap: wrap; }
+  .btn { display: inline-flex; align-items: center; gap: 8px; padding: 11px 22px; border-radius: 8px; font-size: 0.875rem; font-weight: 500; text-decoration: none; transition: all 0.2s; cursor: pointer; border: none; font-family: inherit; }
+  .btn-primary { background: var(--ink); color: #fff; }
+  .btn-primary:hover { background: #333; transform: translateY(-1px); }
+  .btn-ghost { background: transparent; color: var(--ink); border: 1px solid var(--border); }
+  .btn-ghost:hover { border-color: var(--ink-2); background: var(--surface); }
+
+  /* SECTION SHARED */
+  .section-label { font-family: 'DM Mono', monospace; font-size: 0.72rem; letter-spacing: 0.1em; color: var(--ink-3); text-transform: uppercase; margin-bottom: 2.5rem; }
+  .sec-divider { border-top: 1px solid var(--border); }
+  h2.sec-title { font-family: 'DM Serif Display', serif; font-size: clamp(1.7rem, 3.5vw, 2.4rem); letter-spacing: -0.015em; margin-bottom: 2.5rem; }
+
+  /* ABOUT */
+  .about-grid { display: grid; grid-template-columns: 1.3fr 0.7fr; gap: 4rem; align-items: start; }
+  .about-text p { color: var(--ink-2); line-height: 1.85; margin-bottom: 1rem; font-size: 0.975rem; }
+  .about-text h2 { font-family: 'DM Serif Display', serif; font-size: clamp(1.7rem, 3.5vw, 2.4rem); line-height: 1.2; margin-bottom: 1.25rem; letter-spacing: -0.015em; }
+  .about-stats { display: flex; flex-direction: column; gap: 1.5rem; padding-top: 0.25rem; }
+  .stat-item { display: flex; flex-direction: column; gap: 4px; }
+  .stat-num { font-family: 'DM Serif Display', serif; font-size: 2.25rem; line-height: 1; color: var(--ink); }
+  .stat-label { font-size: 0.85rem; color: var(--ink-3); }
+  .stat-div { width: 36px; height: 1px; background: var(--border); }
+
+  /* SKILLS */
+  .skills-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(190px, 1fr)); gap: 1px; background: var(--border); border: 1px solid var(--border); border-radius: 12px; overflow: hidden; }
+  .skill-cell { background: var(--bg); padding: 1.4rem 1.5rem; transition: background 0.15s; }
+  .skill-cell:hover { background: var(--surface); }
+  .skill-category { font-size: 0.72rem; font-family: 'DM Mono', monospace; color: var(--ink-3); letter-spacing: 0.08em; text-transform: uppercase; margin-bottom: 0.85rem; }
+  .skill-list { display: flex; flex-direction: column; gap: 5px; }
+  .skill-list span { font-size: 0.875rem; color: var(--ink-2); }
+
+  /* PROJECTS */
+  .project-list { display: flex; flex-direction: column; }
+  .project-item { display: grid; grid-template-columns: 44px 1fr auto; align-items: start; gap: 1.25rem; padding: 1.6rem 1rem; border-bottom: 1px solid var(--border); text-decoration: none; color: inherit; transition: background 0.15s; border-radius: 4px; margin: 0 -1rem; }
+  .project-item:first-child { border-top: 1px solid var(--border); }
+  .project-item:hover { background: var(--surface); }
+  .project-num { font-family: 'DM Mono', monospace; font-size: 0.75rem; color: var(--ink-3); padding-top: 3px; }
+  .project-info h3 { font-size: 1rem; font-weight: 600; margin-bottom: 5px; }
+  .project-info p { font-size: 0.875rem; color: var(--ink-2); line-height: 1.6; }
+  .project-right { display: flex; flex-direction: column; align-items: flex-end; gap: 10px; }
+  .project-tags { display: flex; gap: 5px; flex-wrap: wrap; justify-content: flex-end; }
+  .tag { font-size: 0.72rem; font-family: 'DM Mono', monospace; padding: 3px 9px; background: var(--tag-bg); color: var(--ink-2); border-radius: 4px; }
+  .arrow { font-size: 1rem; color: var(--ink-3); transition: transform 0.2s, color 0.2s; }
+  .project-item:hover .arrow { transform: translate(3px,-3px); color: var(--ink); }
+
+  /* EDUCATION */
+  .edu-block { border: 1px solid var(--border); border-radius: 12px; padding: 1.75rem 2rem; background: var(--surface); }
+  .edu-block h3 { font-size: 1.05rem; font-weight: 600; margin-bottom: 4px; }
+  .edu-block .edu-sub { font-size: 0.875rem; color: var(--ink-2); margin-bottom: 0.75rem; }
+  .edu-block .edu-date { font-family: 'DM Mono', monospace; font-size: 0.75rem; color: var(--ink-3); margin-bottom: 1rem; }
+  .edu-courses { display: flex; flex-wrap: wrap; gap: 6px; }
+
+  /* CERTIFICATIONS */
+  .cert-list { display: flex; flex-direction: column; gap: 0; }
+  .cert-item { display: flex; align-items: center; gap: 1rem; padding: 1rem 0; border-bottom: 1px solid var(--border); font-size: 0.9rem; }
+  .cert-item:first-child { border-top: 1px solid var(--border); }
+  .cert-dot { width: 7px; height: 7px; border-radius: 50%; background: var(--accent); flex-shrink: 0; }
+  .cert-name { font-weight: 500; color: var(--ink); }
+
+  /* CONTACT */
+  .contact-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 3rem; align-items: start; }
+  .contact-text { color: var(--ink-2); line-height: 1.8; font-size: 0.975rem; }
+  .contact-links { display: flex; flex-direction: column; gap: 0.85rem; }
+  .contact-link { display: flex; align-items: center; gap: 12px; padding: 1rem 1.25rem; background: var(--surface); border: 1px solid var(--border); border-radius: 10px; text-decoration: none; color: var(--ink); font-size: 0.875rem; font-weight: 500; transition: all 0.15s; }
+  .contact-link:hover { border-color: var(--ink-2); transform: translateX(4px); }
+  .ci { font-size: 1rem; width: 20px; text-align: center; }
+
+  footer { border-top: 1px solid var(--border); padding: 2rem clamp(1.5rem,5vw,4rem); max-width: 900px; margin: 0 auto; display: flex; justify-content: space-between; align-items: center; color: var(--ink-3); font-size: 0.82rem; }
+
+  @keyframes fadeUp { from { opacity:0; transform:translateY(18px) } to { opacity:1; transform:translateY(0) } }
+  .fade { animation: fadeUp 0.65s ease both; }
+  .d1 { animation-delay: 0.1s; } .d2 { animation-delay: 0.2s; } .d3 { animation-delay: 0.32s; } .d4 { animation-delay: 0.44s; }
+
+  @media (max-width: 640px) {
+    .about-grid, .contact-grid { grid-template-columns: 1fr; gap: 2rem; }
+    .project-item { grid-template-columns: 36px 1fr; }
+    .project-right { display: none; }
+    .nav-links { display: none; }
+  }
+</style>
+</head>
+<body>
+
+<nav>
+  <a href="#hero" class="nav-logo">RNS.</a>
+  <ul class="nav-links">
+    <li><a href="#about">About</a></li>
+    <li><a href="#skills">Skills</a></li>
+    <li><a href="#projects">Projects</a></li>
+    <li><a href="#education">Education</a></li>
+    <li><a href="#contact">Contact</a></li>
+  </ul>
+</nav>
+
+<!-- HERO -->
+<section id="hero">
+  <div class="hero-tag fade d1"><span></span>Open to internships &amp; opportunities</div>
+  <h1 class="fade d2">Ram Narayan<br>Singh —<br><em>EEE &amp; AI/ML</em></h1>
+  <p class="hero-sub fade d3">Electrical &amp; Electronics Engineering undergraduate at NMIT Bengaluru. Bridging hardware intelligence and software innovation — Java, Python, ML, and embedded systems.</p>
+  <div class="hero-actions fade d4">
+    <a href="#projects" class="btn btn-primary">View my work</a>
+    <a href="#contact" class="btn btn-ghost">Get in touch</a>
+  </div>
+</section>
+
+<!-- ABOUT -->
+<section id="about" class="sec-divider">
+  <p class="section-label">01 — About</p>
+  <div class="about-grid">
+    <div class="about-text">
+      <h2>Building at the intersection of hardware &amp; software</h2>
+      <p>I'm a B.Tech (EEE) student at Nitte Meenakshi Institute of Technology, specialising in Artificial Intelligence, Machine Learning, and Semiconductor Technology.</p>
+      <p>My goal is to apply ML and software engineering skills to solve large-scale real-world problems — particularly where hardware meets intelligent software. Currently targeting software engineering and research internship roles.</p>
+    </div>
+    <div class="about-stats">
+      <div class="stat-item">
+        <span class="stat-num">2027</span>
+        <span class="stat-label">Expected graduation</span>
+      </div>
+      <div class="stat-div"></div>
+      <div class="stat-item">
+        <span class="stat-num">5+</span>
+        <span class="stat-label">Certifications earned</span>
+      </div>
+      <div class="stat-div"></div>
+      <div class="stat-item">
+        <span class="stat-num">3</span>
+        <span class="stat-label">Projects built</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- SKILLS -->
+<section id="skills" class="sec-divider">
+  <p class="section-label">02 — Skills</p>
+  <h2 class="sec-title">Technologies &amp; tools</h2>
+  <div class="skills-grid">
+    <div class="skill-cell">
+      <p class="skill-category">Languages</p>
+      <div class="skill-list">
+        <span>Java</span><span>Python</span><span>SQL</span><span>C</span>
+      </div>
+    </div>
+    <div class="skill-cell">
+      <p class="skill-category">AI / ML</p>
+      <div class="skill-list">
+        <span>Supervised Learning</span><span>Neural Networks</span><span>scikit-learn</span><span>NumPy · Pandas</span>
+      </div>
+    </div>
+    <div class="skill-cell">
+      <p class="skill-category">Tools &amp; Platforms</p>
+      <div class="skill-list">
+        <span>MATLAB / Simulink</span><span>Git &amp; GitHub</span><span>AutoCAD</span><span>Google Colab</span>
+      </div>
+    </div>
+    <div class="skill-cell">
+      <p class="skill-category">Databases</p>
+      <div class="skill-list">
+        <span>MySQL</span><span>Relational Schema</span><span>Query Optimisation</span>
+      </div>
+    </div>
+    <div class="skill-cell">
+      <p class="skill-category">Hardware</p>
+      <div class="skill-list">
+        <span>Circuit Design</span><span>Semiconductor Devices</span><span>PCB Fundamentals</span><span>Additive Mfg.</span>
+      </div>
+    </div>
+    <div class="skill-cell">
+      <p class="skill-category">Concepts</p>
+      <div class="skill-list">
+        <span>OOP · DSA</span><span>Product Development</span><span>Industry 4.0</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- PROJECTS -->
+<section id="projects" class="sec-divider">
+  <p class="section-label">03 — Projects</p>
+  <h2 class="sec-title">Selected work</h2>
+  <div class="project-list">
+    <a href="#" class="project-item">
+      <span class="project-num">01</span>
+      <div class="project-info">
+        <h3>Fault Detection in Power Systems using ML</h3>
+        <p>Classification model to detect faults in electrical distribution systems using simulated sensor data from MATLAB/Simulink.</p>
+      </div>
+      <div class="project-right">
+        <div class="project-tags"><span class="tag">Python</span><span class="tag">scikit-learn</span><span class="tag">Simulink</span></div>
+        <span class="arrow">↗</span>
+      </div>
+    </a>
+    <a href="#" class="project-item">
+      <span class="project-num">02</span>
+      <div class="project-info">
+        <h3>Student Grade Management System</h3>
+        <p>Java-based CRUD application with a MySQL backend to manage student records, featuring optimised SQL queries and OOP design patterns.</p>
+      </div>
+      <div class="project-right">
+        <div class="project-tags"><span class="tag">Java</span><span class="tag">MySQL</span><span class="tag">JDBC</span></div>
+        <span class="arrow">↗</span>
+      </div>
+    </a>
+    <a href="#" class="project-item">
+      <span class="project-num">03</span>
+      <div class="project-info">
+        <h3>Smart Energy Monitoring Dashboard</h3>
+        <p>Data visualisation dashboard for monitoring real-time power consumption patterns using simulated IoT sensor data.</p>
+      </div>
+      <div class="project-right">
+        <div class="project-tags"><span class="tag">Python</span><span class="tag">SQL</span><span class="tag">Matplotlib</span></div>
+        <span class="arrow">↗</span>
+      </div>
+    </a>
+  </div>
+</section>
+
+<!-- EDUCATION -->
+<section id="education" class="sec-divider">
+  <p class="section-label">04 — Education</p>
+  <h2 class="sec-title">Academic background</h2>
+  <div class="edu-block">
+    <h3>Nitte Meenakshi Institute of Technology (NMIT)</h3>
+    <p class="edu-sub">B.Tech — Electrical &amp; Electronics Engineering &nbsp;·&nbsp; Bengaluru, India</p>
+    <p class="edu-date">Aug 2023 — May 2027</p>
+    <p style="font-size:0.875rem;color:var(--ink-2);margin-bottom:1rem;">Specialisation: Artificial Intelligence, Machine Learning &amp; Semiconductor Technology</p>
+    <div class="edu-courses">
+      <span class="tag">Data Structures &amp; Algorithms</span>
+      <span class="tag">Electronic Devices &amp; Circuits</span>
+      <span class="tag">Signals &amp; Systems</span>
+      <span class="tag">Engineering Mathematics</span>
+      <span class="tag">Digital Systems</span>
+      <span class="tag">Object-Oriented Programming</span>
+    </div>
+  </div>
+
+  <div style="margin-top:3rem;">
+    <p class="section-label" style="margin-bottom:1.5rem">Certifications</p>
+    <div class="cert-list">
+      <div class="cert-item"><div class="cert-dot"></div><span class="cert-name">Programming in Core Java</span></div>
+      <div class="cert-item"><div class="cert-dot"></div><span class="cert-name">Fundamentals of Java Programming</span></div>
+      <div class="cert-item"><div class="cert-dot"></div><span class="cert-name">Semiconductors: Electronic Devices &amp; Circuits</span></div>
+      <div class="cert-item"><div class="cert-dot"></div><span class="cert-name">AutoCAD — 2D Essentials</span></div>
+      <div class="cert-item"><div class="cert-dot"></div><span class="cert-name">Additive Manufacturing Designer &amp; Industry 4.0</span></div>
+    </div>
+  </div>
+</section>
+
+<!-- CONTACT -->
+<section id="contact" class="sec-divider">
+  <p class="section-label">05 — Contact</p>
+  <h2 class="sec-title">Let's connect</h2>
+  <div class="contact-grid">
+    <div class="contact-text">
+      <p>I'm actively looking for software engineering and research internship opportunities, particularly at companies working on large-scale ML systems or hardware-software integration.</p>
+      <p style="margin-top:1rem">Based in Bengaluru, India — open to remote and on-site roles.</p>
+    </div>
+    <div class="contact-links">
+      <a href="mailto:1nt23ee043.ram@nmit.ac.in" class="contact-link">
+        <span class="ci">✉</span> 1nt23ee043.ram@nmit.ac.in
+      </a>
+      <a href="https://www.linkedin.com/in/r-n-singh" class="contact-link" target="_blank">
+        <span class="ci">↗</span> linkedin.com/in/r-n-singh
+      </a>
+      <a href="https://github.com/Buzz123-hub" class="contact-link" target="_blank">
+        <span class="ci">⌥</span> github.com/Buzz123-hub
+      </a>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <span>© 2026 Ram Narayan Singh</span>
+  <span>Bengaluru, India</span>
+</footer>
+
+</body>
+</html>
